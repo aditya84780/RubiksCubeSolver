@@ -3,6 +3,7 @@
 //
 
 #include "RubiksCube.h"
+#include <random>
 
 char RubiksCube::getColourLetter(COLOUR colour) {
     switch(colour) {
@@ -98,6 +99,69 @@ RubiksCube &RubiksCube::invert(MOVE ind) {
         case MOVE::RPRIME: return this->r();
     }
 }
+
+void RubiksCube::print() {  //beta
+
+    cout<<"Rubik's Cube:\n\n";
+
+    for(int row = 0; row<3; row++) {
+        for(int offset = 0; offset<7; offset++) cout<<" ";
+        for(int col = 0; col<3; col++) {
+            cout<<getColourLetter(getColour(FACE::UP, row, col))<<" ";
+        }
+        cout<<"\n";
+    }
+    cout<<"\n";
+
+    for(int row = 0; row<3; row++) {
+
+        for(int col = 0; col<3; col++) {
+            cout<<getColourLetter(getColour(FACE::LEFT, row, col))<<" ";
+        }
+        cout<<" ";
+
+        for(int col = 0; col<3; col++) {
+            cout<<getColourLetter(getColour(FACE::FRONT, row, col))<<" ";
+        }
+        cout<<" ";
+
+        for(int col = 0; col<3; col++) {
+            cout<<getColourLetter(getColour(FACE::RIGHT, row, col))<<" ";
+        }
+        cout<<" ";
+
+        for(int col = 0; col<3; col++) {
+            cout<<getColourLetter(getColour(FACE::BACK, row, col))<<" ";
+        }
+        cout<<"\n";
+    }
+    cout<<"\n";
+
+    for(int row = 0; row<3; row++) {
+        for(int offset = 0; offset<7; offset++) cout<<" ";
+        for(int col = 0; col<3; col++) {
+            cout<<getColourLetter(getColour(FACE::DOWN, row, col))<<" ";
+        }
+        cout<<"\n";
+    }
+    cout<<"\n";
+}
+
+vector<RubiksCube::MOVE> RubiksCube::randomShuffle(unsigned int times) {
+    vector<RubiksCube::MOVE> moves_performed;
+    random_device rd;
+    mt19937 eng(rd());
+    uniform_int_distribution<> rand_num(0,17);
+    while(times--) {
+        unsigned int select_move = rand_num(eng);
+        moves_performed.push_back(static_cast<MOVE>(select_move));
+        this->move(static_cast<MOVE>(select_move));
+    }
+    return moves_performed;
+}
+
+
+
 
 
 
