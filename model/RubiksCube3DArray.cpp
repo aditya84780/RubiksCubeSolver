@@ -352,18 +352,19 @@ public:
         return *this;
     }
 
-    struct hash3D {
-    public:
-        size_t operator()(const RubiksCube3DArray& RB1) const {
-            string hasher = "";
-            for(int i = 0; i<6; i++) {
-                for(int j = 0; j<3; j++) {
-                    for(int k = 0; k<3; k++) {
-                        hasher += RB1.cube[i][j][k];
-                    }
+};
+
+struct hash3D {
+public:
+    size_t operator()(const RubiksCube3DArray& RB1) const {
+        string hasher = "";
+        for(int i = 0; i<6; i++) {
+            for(int j = 0; j<3; j++) {
+                for(int k = 0; k<3; k++) {
+                    hasher += RB1.cube[i][j][k];
                 }
             }
-            return hash<string>()(hasher);
         }
-    };
+        return hash<string>()(hasher);
+    }
 };
