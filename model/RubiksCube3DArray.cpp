@@ -47,6 +47,7 @@ public:
             }
         }
     }
+
     ~RubiksCube3DArray() {   //mine
         for(int i = 0; i<6; i++) {
             for(int j = 0; j<3; j++) {
@@ -56,6 +57,7 @@ public:
         }
         delete[] cube;
     }
+
     COLOUR getColour(FACE face, unsigned int row, unsigned int col) const override {
         char colour = cube[static_cast<int>(face)][row][col];
         switch (colour) {
@@ -352,6 +354,28 @@ public:
         return *this;
     }
 
+    RubiksCube3DArray& operator=(const RubiksCube3DArray& RB1) {
+        for(int i = 0; i<6; i++) {
+            for(int j = 0; j<3; j++) {
+                for(int k = 0; k<3; k++) {
+                    cube[i][j][k] = RB1.cube[i][j][k];
+                }
+            }
+        }
+        return *this;
+    }
+
+    bool operator==(const RubiksCube3DArray& RB1) const {
+        for(int i = 0; i<6; i++) {
+            for(int j = 0; j<3; j++) {
+                for(int k = 0; k<3; k++) {
+                    if(cube[i][j][k] == RB1.cube[i][j][k]) continue;
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 };
 
 struct hash3D {
