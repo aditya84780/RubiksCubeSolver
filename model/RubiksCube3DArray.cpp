@@ -354,7 +354,7 @@ public:
 
     struct hash3D {
     public:
-        size_t operator()(const RubiksCube3DArray RB1) const {
+        size_t operator()(const RubiksCube3DArray& RB1) const {
             string hasher = "";
             for(int i = 0; i<6; i++) {
                 for(int j = 0; j<3; j++) {
