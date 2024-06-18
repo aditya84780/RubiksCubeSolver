@@ -12,20 +12,20 @@ class RubiksCube {
 public:
     enum class FACE {
         UP,
-        DOWN,
         LEFT,
-        RIGHT,
         FRONT,
+        RIGHT,
         BACK,
+        DOWN,
     };
 
     enum class COLOUR {
-        RED,
-        GREEN,
-        BLUE,
         WHITE,
-        YELLOW,
+        GREEN,
+        RED,
+        BLUE,
         ORANGE,
+        YELLOW,
     };
 
     enum class MOVE {
@@ -37,7 +37,7 @@ public:
         B, BPRIME, B2,
     };
 
-    virtual COLOUR getColour(FACE face, unsigned int row, unsigned int col) = 0;
+    virtual COLOUR getColour(FACE face, unsigned int row, unsigned int col) const = 0; //beta
     virtual void print() = 0; //beta
     [[nodiscard]] virtual bool isSolved() const = 0; //beta
 
@@ -71,13 +71,13 @@ public:
 
     virtual RubiksCube &l2() = 0;
 
-    virtual RubiksCube &r() = 0;
-
     virtual RubiksCube &d() = 0;
 
     virtual RubiksCube &dPrime() = 0;
 
     virtual RubiksCube &d2() = 0;
+
+    virtual RubiksCube &r() = 0;
 
     virtual RubiksCube &rPrime() = 0;
 
