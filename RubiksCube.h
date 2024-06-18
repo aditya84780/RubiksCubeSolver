@@ -38,8 +38,8 @@ public:
     };
 
     virtual COLOUR getColour(FACE face, unsigned int row, unsigned int col) = 0;
-    virtual void print() = 0; //mine
-    [[nodiscard]] virtual bool isSolved() const = 0; //mine
+    virtual void print() = 0; //beta
+    [[nodiscard]] virtual bool isSolved() const = 0; //beta
 
     static char getColourLetter(COLOUR colour);
     static string getMove(MOVE ind);
